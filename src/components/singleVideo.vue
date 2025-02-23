@@ -19,7 +19,8 @@ const props = defineProps({
 });
 
 const singleVideoStore = useSingleVideoStore();
-const API_KEY = import.meta.env.VITE_APP_GOOGLE_API_KEY;
+const API_KEY = AIzaSyDeSFIgQC_E3f1E9YXayUxcbQppHBa77vc
+//const API_KEY = import.meta.env.VITE_APP_GOOGLE_API_KEY;
 
 
 const channelId = 'UCvC4D8onUfXzvjTOM-dBfEA';
