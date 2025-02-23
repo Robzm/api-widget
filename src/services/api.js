@@ -26,11 +26,10 @@ export default {
       });
       return response.data.items[0]; // Retorna el primer video
     } catch (error) {
-      console.error('Error fetching first video:', error);
+      console.error('Error fetching first video:', error.response ? error.response.data : error.message);
       throw error;
     }
   },
-
   // Método para obtener una lista de videos (para el grid)
   async getVideoList(channelId, apiKey, maxResults = 10) {
     try {
