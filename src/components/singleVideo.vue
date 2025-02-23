@@ -1,12 +1,14 @@
 <template>
     <div >
-        <div v-if="singleVideoStore.isLoading"> <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular></div>
+        <div v-if="singleVideoStore.isLoading" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"> 
+          <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
+        </div>
        
         <iframe v-if="singleVideoStore.videoId" width="699" height="393"
             :src="`https://www.youtube.com/embed/${singleVideoStore.videoId}`" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-            class="rounded-xl"></iframe>
+            class="rounded-md" @click="openModal"></iframe>
     </div>
 </template>
 
@@ -33,6 +35,10 @@ onUnmounted(() => {
   console.log('Componente desmontado');
   // Lógica para limpiar (si es necesaria)
 });
+function openModal() {
+    // Emitir un evento al componente padre para abrir el modal
+    emit('openModal');
+}
 </script>
 
 <style scoped>

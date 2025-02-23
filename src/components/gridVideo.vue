@@ -3,7 +3,7 @@
         <h2>Video Grid Component</h2>
 
         <!-- Mostrar estado de carga -->
-        <p v-if="videoGridStore.isLoading">
+        <p v-if="videoGridStore.isLoading ">
             <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
         </p>
 

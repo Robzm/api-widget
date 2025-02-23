@@ -35,15 +35,13 @@
                 </v-col>
 
                 <!-- Columna Derecha: Contenido Adicional -->
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="8" class="bg-white">
                     
                         <v-card v-if="selectedTemplate" class="sticky-card ">
-                            <v-card-title class="text-h5 bg-[#252628] ">
-                                
-                            </v-card-title>
-                            <v-card-text class="bg-[#252628]">
+                            
+                            <v-card-text class="bg-[#fff]">
 
-                                <single-video v-if="selectedTemplate.title === 'Single Video'" />
+                                <single-video v-if="selectedTemplate.title === 'Single Video'" @openModal="openModal" />
                                 <grid-video v-else-if="selectedTemplate.title === 'Video Grid'"/>
 
                                 <!-- <v-btn color="primary" @click="applyTemplate">
@@ -57,6 +55,25 @@
                     Apply this Template
                 </v-btn>
             </v-row>
+             <!-- Modal para video -->
+             <v-dialog v-model="isModalVisible" max-width="90vw">
+                <v-card>
+                    <v-card-title class="headline">Reproduciendo Video</v-card-title>
+                    <v-card-text>
+                        <div v-if="singleVideoStore.isLoading"> 
+                            <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
+                        </div>
+                        <iframe v-if="singleVideoStore.videoId" width="100%" height="393"
+                            :src="`https://www.youtube.com/embed/${singleVideoStore.videoId}`" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            class="rounded-md"></iframe>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-btn text @click="closeModal">Cerrar</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </v-container>
     </v-app>
     <div class="bg-red-200">
@@ -68,6 +85,9 @@
 import { ref, computed } from "vue";
 import singleVideo from "./singleVideo.vue";
 import gridVideo from "./gridVideo.vue";
+import { useSingleVideoStore } from '../stores/singleVideo'; // Asegúrate de que la ruta sea correcta
+
+
 
 
 // Datos de las plantillas
@@ -75,14 +95,14 @@ const templates = [
     {
         id: 1,
         title: "Youtube Chanel",
-        detailedDescription: "This template is perfect for showcasing your YouTube channel. It includes a video player, subscription button, and links to your latest videos.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://via.placeholder.com/400x200",
         category: "Social Media",
     },
     {
         id: 2,
         title: "Video Grid",
-        detailedDescription: "Display your videos in a beautiful grid layout. Perfect for tutorials, product demos, or promotional content.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://elfsight.com/assets/templates/youtube-gallery/video-grid.jpg?v=1",
         category: "Social Media",
     },
@@ -90,7 +110,7 @@ const templates = [
         id: 3,
         title: "Single Video",
 
-        detailedDescription: "A simple and effective contact form to collect leads, inquiries, or feedback from your website visitors.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://elfsight.com/assets/templates/youtube-gallery/single-video.jpg?v=2",
         category: "Social Media",
     },
@@ -98,7 +118,7 @@ const templates = [
         id: 4,
         title: "YouTube Subscribe",
 
-        detailedDescription: "Showcase your images in a responsive grid layout. Perfect for portfolios, product galleries, or photo blogs.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://via.placeholder.com/400x200",
         category: "Social Media",
     },
@@ -107,7 +127,7 @@ const templates = [
         id: 5,
         title: "Video Gallery",
 
-        detailedDescription: "Showcase your images in a responsive grid layout. Perfect for portfolios, product galleries, or photo blogs.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://via.placeholder.com/400x200",
         category: "Social Media",
     },
@@ -115,7 +135,7 @@ const templates = [
         id: 6,
         title: "Playlist",
 
-        detailedDescription: "Showcase your images in a responsive grid layout. Perfect for portfolios, product galleries, or photo blogs.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://via.placeholder.com/400x200",
         category: "Social Media",
     },
@@ -123,7 +143,7 @@ const templates = [
         id: 7,
         title: "Video List",
 
-        detailedDescription: "Showcase your images in a responsive grid layout. Perfect for portfolios, product galleries, or photo blogs.",
+        detailedDescription: "This template is perfect for ....",
         image: "https://via.placeholder.com/400x200",
         category: "Social Media",
     },
@@ -152,9 +172,21 @@ function selectTemplate(template) {
 function applyTemplate() {
     if (selectedTemplate.value) {
         alert(`Applying template: ${selectedTemplate.value.title}`);
-        // Aquí puedes agregar la lógica para aplicar la plantilla
+        
     }
 }
+
+// Abrir la ventana modal
+function openModal() {
+    isModalVisible.value = true;
+    
+}
+
+// Cerrar la ventana modal
+function closeModal() {
+    isModalVisible.value = false;
+}
+
 </script>
 
 <style scoped>
