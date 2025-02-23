@@ -31,7 +31,7 @@ export default {
     }
   },
   // Método para obtener una lista de videos (para el grid)
-  async getVideoList(channelId, apiKey, maxResults = 10) {
+  async getVideoList(channelId, apiKey, maxResults = 9) {
     try {
       const response = await apiClient.get('/search', {
         params: {

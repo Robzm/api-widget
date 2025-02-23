@@ -21,11 +21,11 @@
                     style="background-color: #202020; overflow: scroll; height: 500px; overflow-y: auto; ">
                     <v-row>
                         <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6">
-                            <v-card @click="selectTemplate(template)">
+                            <v-card @click="selectTemplate(template)" class="cursor-pointer">
                                 <v-img :src="template.image" :alt="template.title" height="100"></v-img>
 
                             </v-card>
-                            <v-card-title style="color: white;">{{ template.title }}</v-card-title>
+                            <v-card-title >{{ template.title }}</v-card-title>
 
                         </v-col>
 
@@ -36,7 +36,7 @@
 
                 <!-- Columna Derecha: Contenido Adicional -->
                 <v-col cols="12" md="8">
-                    <v-expand-transition>
+                    
                         <v-card v-if="selectedTemplate" class="sticky-card ">
                             <v-card-title class="text-h5 bg-[#252628] ">
                                 
@@ -44,13 +44,14 @@
                             <v-card-text class="bg-[#252628]">
 
                                 <single-video v-if="selectedTemplate.title === 'Single Video'" />
+                                <grid-video v-else-if="selectedTemplate.title === 'Video Grid'"/>
 
                                 <!-- <v-btn color="primary" @click="applyTemplate">
                     Apply this Template
                   </v-btn> -->
                             </v-card-text>
                         </v-card>
-                    </v-expand-transition>
+                    
                 </v-col>
                 <v-btn color="primary" @click="applyTemplate">
                     Apply this Template
@@ -66,6 +67,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import singleVideo from "./singleVideo.vue";
+import gridVideo from "./gridVideo.vue";
 
 
 // Datos de las plantillas
@@ -81,7 +83,7 @@ const templates = [
         id: 2,
         title: "Video Grid",
         detailedDescription: "Display your videos in a beautiful grid layout. Perfect for tutorials, product demos, or promotional content.",
-        image: "https://via.placeholder.com/400x200",
+        image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://elfsight.com/assets/templates/youtube-gallery/video-grid.jpg?v=1",
         category: "Social Media",
     },
     {
@@ -89,7 +91,7 @@ const templates = [
         title: "Single Video",
 
         detailedDescription: "A simple and effective contact form to collect leads, inquiries, or feedback from your website visitors.",
-        image: "https://via.placeholder.com/400x200",
+        image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://elfsight.com/assets/templates/youtube-gallery/single-video.jpg?v=2",
         category: "Social Media",
     },
     {
@@ -163,9 +165,6 @@ function applyTemplate() {
 
 
 
-.v-card:hover {
-    transform: scale(1.02);
-}
 
 .sticky-card {
     position: sticky;
