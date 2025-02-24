@@ -1,7 +1,8 @@
 <template>
-    <v-app style="background: linear-gradient(0deg, rgba(0, 0, 0, .08) 0%, rgba(0, 0, 0, .08) 100%), linear-gradient(90deg, #a83fbe -20.16%, #fd3459 49.45%, #ffc73f 112.16%);">
+    <v-app
+        style="background: linear-gradient(0deg, rgba(0, 0, 0, .08) 0%, rgba(0, 0, 0, .08) 100%), linear-gradient(90deg, #a83fbe -20.16%, #fd3459 49.45%, #ffc73f 112.16%);">
         <v-container class="d-flex justify-center align-center fill-height">
-            
+
             <!-- <v-card-title class="text-h4 font-weight-bold mb-4">
                 Select a Template
             </v-card-title>
@@ -20,7 +21,8 @@
                 <v-col class="custom-scrollbar" cols="12" md="4"
                     style="background-color: #202020; overflow: scroll; height: 500px; overflow-y: auto; ">
                     <v-row>
-                        <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6" class="text-sm" >
+                        <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6"
+                            class="text-sm">
                             <v-card @click="selectTemplate(template)" class="cursor-pointer bg-[#252628]">
                                 <v-img :src="template.image" :alt="template.title" height="100" class=""></v-img>
 
@@ -36,26 +38,27 @@
 
                 <!-- Columna Derecha: Contenido Adicional -->
                 <v-col cols="12" md="8" class="bg-white">
-                    
-                        <v-card v-if="selectedTemplate" class="sticky-card ">
-                            
-                            <v-card-text class="bg-[#fff]">
 
-                                <single-video v-if="selectedTemplate.title === 'Single Video'" />
-                                <grid-video v-else-if="selectedTemplate.title === 'Video Grid'"/>
+                    <v-card v-if="selectedTemplate" class="sticky-card ">
 
-                                <!-- <v-btn color="primary" @click="applyTemplate">
+                        <v-card-text class="bg-[#fff]">
+
+                            <single-video v-if="selectedTemplate.title === 'Single Video'" />
+                            <grid-video v-else-if="selectedTemplate.title === 'Video Grid'" />
+
+                            <!-- <v-btn color="primary" @click="applyTemplate">
                     Apply this Template
                   </v-btn> -->
-                            </v-card-text>
-                        </v-card>
-                    
+                        </v-card-text>
+                    </v-card>
+
                 </v-col>
-                <v-btn :style="{ backgroundColor: '#2BBF63', color: 'white' }" @click="applyTemplate">
-                 <v-card-text class="text-center">Continue with this template</v-card-text>
+                <v-btn :style="{ backgroundColor: '#2BBF63', color: 'white', fontSize:'11px' }" @click="applyTemplate"
+                    class="flex justify-center items-center">
+                    Continue with this template
                 </v-btn>
-            </v-row>
-             
+            </v-row>  
+
         </v-container>
     </v-app>
     <div class="bg-red-200">
@@ -154,7 +157,7 @@ function selectTemplate(template) {
 function applyTemplate() {
     if (selectedTemplate.value) {
         alert(`Applying template: ${selectedTemplate.value.title}`);
-        
+
     }
 }
 
@@ -165,22 +168,21 @@ function applyTemplate() {
 </script>
 
 <style scoped>
-
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px; 
+    width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #202020; 
+    background: #202020;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #555; 
-  border-radius: 4px; 
+    background: #555;
+    border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #888; 
+    background: #888;
 }
 
 .v-card {
@@ -194,6 +196,6 @@ function applyTemplate() {
 .sticky-card {
     position: sticky;
     top: 20px;
-    
+
 }
 </style>
