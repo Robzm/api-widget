@@ -53,7 +53,7 @@
                     </v-card>
 
                 </v-col>
-                <v-btn :style="{ backgroundColor: '#2BBF63', color: 'white', fontSize:'11px' }" @click="applyTemplate"
+                <v-btn :style="{ backgroundColor: '#2BBF63', color: 'white', fontSize:'12px',textTransform:'none' }" @click="applyTemplate"
                     class="flex justify-center items-center">
                     Continue with this template
                 </v-btn>
@@ -62,7 +62,7 @@
         </v-container>
     </v-app>
     <div class="bg-red-200">
-        hoñla
+        h
     </div>
 </template>
 
