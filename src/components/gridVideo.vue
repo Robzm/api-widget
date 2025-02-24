@@ -1,14 +1,15 @@
 <template>
     <div>
-        <h2>Video Grid Component</h2>
+        
 
-        <!-- Mostrar estado de carga -->
-        <p v-if="videoGridStore.isLoading ">
-            <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
-        </p>
+        
+        
+        <div v-if="videoGridStore.isLoading" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"> 
+          <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
+        </div>
 
-        <!-- Mostrar error -->
-        <p v-if="videoGridStore.error">Error: {{ videoGridStore.error.message }}</p>
+        
+        
 
         <!-- Grid de Videos -->
         <v-row>
@@ -32,7 +33,7 @@
                         class=""
                     ></iframe>
 
-                    <!-- Título del Video -->
+                    
                     
                 </v-card>
             </v-col>
@@ -46,13 +47,13 @@ import { useVideoGridStore } from '../stores/videoGrid';
 
 const videoGridStore = useVideoGridStore();
 const API_KEY = 'AIzaSyDeSFIgQC_E3f1E9YXayUxcbQppHBa77vc';
-const CHANNEL_ID = "UCvC4D8onUfXzvjTOM-dBfEA"; // Ejemplo: Canal de Google Developers
+const CHANNEL_ID = "UCvC4D8onUfXzvjTOM-dBfEA"; 
 
 onMounted(() => {
-    videoGridStore.fetchVideoList(CHANNEL_ID, API_KEY, 9); // Obtener 10 videos
+    videoGridStore.fetchVideoList(CHANNEL_ID, API_KEY, 9); 
 });
 </script>
 
 <style scoped>
-/* Estilos adicionales si es necesario */
+
 </style>

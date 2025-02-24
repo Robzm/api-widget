@@ -1,31 +1,31 @@
 <template>
     <v-app style="background: linear-gradient(0deg, rgba(0, 0, 0, .08) 0%, rgba(0, 0, 0, .08) 100%), linear-gradient(90deg, #a83fbe -20.16%, #fd3459 49.45%, #ffc73f 112.16%);">
         <v-container class="d-flex justify-center align-center fill-height">
-            <!-- Título -->
-            <v-card-title class="text-h4 font-weight-bold mb-4">
+            
+            <!-- <v-card-title class="text-h4 font-weight-bold mb-4">
                 Select a Template
             </v-card-title>
 
-            <!-- Filtros -->
+           
             <v-chip-group v-model="selectedCategory" mandatory>
                 <v-chip v-for="category in categories" :key="category" :value="category"
                     @click="filterTemplates(category)">
                     {{ category }}
                 </v-chip>
-            </v-chip-group>
+            </v-chip-group> -->
 
-            <!-- Contenedor Principal (Dos Columnas) -->
+            <!-- Contenedor Principal  -->
             <v-row class="mt-2 bg-[#252628] pa-10 rounded-xl " style="height: 593px; width: 1200px; overflow: hidden; ">
                 <!-- Columna Izquierda: Tarjetas de Plantillas -->
                 <v-col cols="12" md="4"
                     style="background-color: #202020; overflow: scroll; height: 500px; overflow-y: auto; ">
                     <v-row>
-                        <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6">
-                            <v-card @click="selectTemplate(template)" class="cursor-pointer">
-                                <v-img :src="template.image" :alt="template.title" height="100"></v-img>
+                        <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6" >
+                            <v-card @click="selectTemplate(template)" class="cursor-pointer bg-[#252628]">
+                                <v-img :src="template.image" :alt="template.title" height="100" width=""></v-img>
 
                             </v-card>
-                            <v-card-title >{{ template.title }}</v-card-title>
+                            <v-card-title class="text-white ">{{ template.title }}</v-card-title>
 
                         </v-col>
 
@@ -41,7 +41,7 @@
                             
                             <v-card-text class="bg-[#fff]">
 
-                                <single-video v-if="selectedTemplate.title === 'Single Video'" @openModal="openModal" />
+                                <single-video v-if="selectedTemplate.title === 'Single Video'" />
                                 <grid-video v-else-if="selectedTemplate.title === 'Video Grid'"/>
 
                                 <!-- <v-btn color="primary" @click="applyTemplate">
@@ -55,25 +55,7 @@
                     Apply this Template
                 </v-btn>
             </v-row>
-             <!-- Modal para video -->
-             <v-dialog v-model="isModalVisible" max-width="90vw">
-                <v-card>
-                    <v-card-title class="headline">Reproduciendo Video</v-card-title>
-                    <v-card-text>
-                        <div v-if="singleVideoStore.isLoading"> 
-                            <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
-                        </div>
-                        <iframe v-if="singleVideoStore.videoId" width="100%" height="393"
-                            :src="`https://www.youtube.com/embed/${singleVideoStore.videoId}`" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            class="rounded-md"></iframe>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn text @click="closeModal">Cerrar</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
+             
         </v-container>
     </v-app>
     <div class="bg-red-200">
@@ -85,7 +67,7 @@
 import { ref, computed } from "vue";
 import singleVideo from "./singleVideo.vue";
 import gridVideo from "./gridVideo.vue";
-import { useSingleVideoStore } from '../stores/singleVideo'; // Asegúrate de que la ruta sea correcta
+
 
 
 
@@ -176,16 +158,9 @@ function applyTemplate() {
     }
 }
 
-// Abrir la ventana modal
-function openModal() {
-    isModalVisible.value = true;
-    
-}
 
-// Cerrar la ventana modal
-function closeModal() {
-    isModalVisible.value = false;
-}
+
+
 
 </script>
 

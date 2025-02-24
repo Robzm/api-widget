@@ -1,6 +1,6 @@
 // stores/videoGridStore.js
 import { defineStore } from 'pinia';
-import api from '@/services/api'; // Importa el servicio de API
+import api from '@/services/api'; 
 
 export const useVideoGridStore = defineStore('videoGrid', {
   state: () => ({
