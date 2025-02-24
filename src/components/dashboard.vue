@@ -20,12 +20,12 @@
                 <v-col cols="12" md="4"
                     style="background-color: #202020; overflow: scroll; height: 500px; overflow-y: auto; ">
                     <v-row>
-                        <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6" >
+                        <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6" class="text-sm" >
                             <v-card @click="selectTemplate(template)" class="cursor-pointer bg-[#252628]">
                                 <v-img :src="template.image" :alt="template.title" height="100" width=""></v-img>
 
                             </v-card>
-                            <v-card-title class="text-white ">{{ template.title }}</v-card-title>
+                            <v-card-text class="text-white text-center  ">{{ template.title }}</v-card-text>
 
                         </v-col>
 
