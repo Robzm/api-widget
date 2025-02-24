@@ -46,7 +46,8 @@ import { onMounted } from 'vue';
 import { useVideoGridStore } from '../stores/videoGrid';
 
 const videoGridStore = useVideoGridStore();
-const API_KEY = 'AIzaSyDeSFIgQC_E3f1E9YXayUxcbQppHBa77vc';
+const API_KEY = 'AIzaSyD-l7qZNaZ6j_xMwvOMFLsfm0k2b8ZXukM';
+
 const CHANNEL_ID = "UCvC4D8onUfXzvjTOM-dBfEA"; 
 
 onMounted(() => {

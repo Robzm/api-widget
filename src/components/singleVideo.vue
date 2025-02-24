@@ -4,7 +4,7 @@
       <v-progress-circular indeterminate :size="91" :width="9"></v-progress-circular>
     </div>
 
-    <div class="relative w-[701px] h-[592px]" @mouseover="isHovered = true" @mouseleave="isHovered = false">
+    <div class="relative w-[701px] h-[400px]" @mouseover="isHovered = true" @mouseleave="isHovered = false">
       <!-- Mostrar la miniatura del video -->
       <img
         v-if="singleVideoStore.videoDetails"
@@ -20,7 +20,7 @@
         class="video-overlay cursor-pointer p-[100px]  "
         @click="openModal"
       >
-        <div class="p-4 text-black w-[701px] h-[350px]  ">
+        <div class="p-4 text-black w-[701px] h-[365px]  ">
           <h3 class="text-lg font-bold mb-2">{{ singleVideoStore.videoDetails.snippet.title }}</h3>
           <p class="text-sm mb-2">{{ formatDate(singleVideoStore.videoDetails.snippet.publishedAt) }}</p>
           <p class="text-sm mb-4 overflow-hidden whitespace-nowrap text-ellipsis">
@@ -52,7 +52,7 @@ import { useSingleVideoStore } from '../stores/singleVideo';
 import Modal from './modal.vue';
 
 const singleVideoStore = useSingleVideoStore();
-const API_KEY = 'AIzaSyDeSFIgQC_E3f1E9YXayUxcbQppHBa77vc';
+const API_KEY = 'AIzaSyD-l7qZNaZ6j_xMwvOMFLsfm0k2b8ZXukM';
 const channelId = 'UCvC4D8onUfXzvjTOM-dBfEA';
 const isHovered = ref(false);
 const isModalOpen = ref(false); // Controla la visibilidad del modal

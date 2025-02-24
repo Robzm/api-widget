@@ -17,12 +17,12 @@
             <!-- Contenedor Principal  -->
             <v-row class="mt-2 bg-[#252628] pa-10 rounded-xl " style="height: 593px; width: 1200px; overflow: hidden; ">
                 <!-- Columna Izquierda: Tarjetas de Plantillas -->
-                <v-col cols="12" md="4"
+                <v-col class="custom-scrollbar" cols="12" md="4"
                     style="background-color: #202020; overflow: scroll; height: 500px; overflow-y: auto; ">
                     <v-row>
                         <v-col v-for="template in filteredTemplates" :key="template.id" cols="12" sm="6" class="text-sm" >
                             <v-card @click="selectTemplate(template)" class="cursor-pointer bg-[#252628]">
-                                <v-img :src="template.image" :alt="template.title" height="100" width=""></v-img>
+                                <v-img :src="template.image" :alt="template.title" height="100" class=""></v-img>
 
                             </v-card>
                             <v-card-text class="text-white text-center  ">{{ template.title }}</v-card-text>
@@ -51,8 +51,8 @@
                         </v-card>
                     
                 </v-col>
-                <v-btn color="primary" @click="applyTemplate">
-                    Apply this Template
+                <v-btn :style="{ backgroundColor: '#2BBF63', color: 'white' }" @click="applyTemplate">
+                 <v-card-text class="text-center">Continue with this template</v-card-text>
                 </v-btn>
             </v-row>
              
@@ -165,6 +165,24 @@ function applyTemplate() {
 </script>
 
 <style scoped>
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #202020; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #555; 
+  border-radius: 4px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .v-card {
     cursor: pointer;
     transition: transform 0.2s;
@@ -176,6 +194,6 @@ function applyTemplate() {
 .sticky-card {
     position: sticky;
     top: 20px;
-    /* Ajusta la posición según sea necesario */
+    
 }
 </style>
