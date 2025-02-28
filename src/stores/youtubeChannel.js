@@ -29,20 +29,21 @@ export const useYoutubeChannelStore = defineStore('youtubeChannel', {
     },
 
     
-    async fetchChannelVideos(channelId, apiKey, maxResults = 10) {
-      this.isLoading = true;
-      this.error = null;
-
-      try {
-        const response = await api.getVideoList(channelId, apiKey, maxResults);
-        this.videos = response;
-      } catch (error) {
-        this.error = error;
-        console.error('Error fetching channel videos:', error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
+    async fetchChannelVideos(channelId, apiKey, maxResults = 9, pageToken = null) {
+        this.isLoading = true;
+        this.error = null;
+      
+        try {
+          const response = await api.getVideoList(channelId, apiKey, maxResults, pageToken);
+          this.videos = pageToken ? [...this.videos, ...response.items] : response.items; // Concatenar nuevos videos si hay paginación
+          this.nextPageToken = response.nextPageToken; 
+        } catch (error) {
+          this.error = error;
+          console.error('Error fetching channel videos:', error);
+        } finally {
+          this.isLoading = false;
+        }
+      },
 
     
     async fetchChannelPlaylists(channelId, apiKey, maxResults = 10) {
