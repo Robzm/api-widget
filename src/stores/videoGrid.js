@@ -1,21 +1,23 @@
-// stores/videoGridStore.js
 import { defineStore } from 'pinia';
-import api from '@/services/api'; 
+import api from '@/services/api';
 
 export const useVideoGridStore = defineStore('videoGrid', {
   state: () => ({
-    videos: [], // Lista de videos
+    videos: [],
     isLoading: false,
     error: null,
+    nextPageToken: null,
   }),
   actions: {
-    async fetchVideoList(channelId, apiKey, maxResults = 9) {
+    async fetchVideoList(channelId, apiKey, maxResults = 9, pageToken = null) {
       this.isLoading = true;
       this.error = null;
 
       try {
-        // Obtener la lista de videos
-        this.videos = await api.getVideoList(channelId, apiKey, maxResults);
+        const response = await api.getVideoList(channelId, apiKey, maxResults, pageToken);
+        console.log('Videos obtenidos:', response.items); // Verifica los videos
+        this.videos = pageToken ? [...this.videos, ...response.items] : response.items;
+        this.nextPageToken = response.nextPageToken;
       } catch (error) {
         this.error = error;
         console.error('Error fetching video list:', error);
