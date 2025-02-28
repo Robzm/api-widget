@@ -45,6 +45,7 @@
 
                             <single-video v-if="selectedTemplate.title === 'Single Video'" />
                             <grid-video v-else-if="selectedTemplate.title === 'Video Grid'" />
+                            <youtube-channel v-else-if="selectedTemplate.title === 'Youtube Channel'" />
 
                             <!-- <v-btn color="primary" @click="applyTemplate">
                     Apply this Template
@@ -70,6 +71,7 @@
 import { ref, computed } from "vue";
 import singleVideo from "./singleVideo.vue";
 import gridVideo from "./gridVideo.vue";
+import youtubeChannel from "./youtubeChannel.vue";
 
 
 
@@ -79,7 +81,7 @@ import gridVideo from "./gridVideo.vue";
 const templates = [
     {
         id: 1,
-        title: "Youtube Chanel",
+        title: "Youtube Channel",
         detailedDescription: "This template is perfect for ....",
         image: "https://via.placeholder.com/400x200",
         category: "Social Media",
