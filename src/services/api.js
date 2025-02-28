@@ -30,6 +30,21 @@ export default {
       throw error;
     }
   },
+  async getChannelDetails(channelId, apiKey) {
+    try {
+      const response = await apiClient.get('/channels', {
+        params: {
+          part: 'snippet,brandingSettings,statistics,contentDetails',
+          id: channelId,
+          key: apiKey,
+        },
+      });
+      return response.data.items[0];
+    } catch (error) {
+      console.error('Error fetching channel details:', error);
+      throw error;
+    }
+  },
   // Método para obtener una lista de videos (para el grid)
   async getVideoList(channelId, apiKey, maxResults = 9) {
     try {
