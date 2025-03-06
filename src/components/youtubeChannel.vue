@@ -50,6 +50,7 @@
   
     
     window.onYouTubeIframeAPIReady = () => {
+    console.log('API de YouTube IFrame lista');
       player = new YT.Player('youtube-player', {
         height: '360',
         width: '640',
