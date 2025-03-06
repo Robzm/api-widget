@@ -143,7 +143,7 @@ const selectedCategory = ref("Social Media");
 const selectedTemplate = ref(null);
 
 // Categorías disponibles
-const categories = ["Social Media", "Forms", "Media"];
+const categories = ["Video", "Reviews"];
 
 // Filtrar plantillas por categoría
 const filteredTemplates = computed(() => {
