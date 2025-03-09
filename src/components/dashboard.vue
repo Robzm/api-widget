@@ -3,17 +3,15 @@
         style="background: linear-gradient(0deg, rgba(0, 0, 0, .08) 0%, rgba(0, 0, 0, .08) 100%), linear-gradient(90deg, #a83fbe -20.16%, #fd3459 49.45%, #ffc73f 112.16%);">
         <v-container class="d-flex justify-center align-center fill-height">
 
-            <!-- <v-card-title class="text-h4 font-weight-bold mb-4">
-                Select a Template
-            </v-card-title>
+            
 
            
-            <v-chip-group v-model="selectedCategory" mandatory>
-                <v-chip v-for="category in categories" :key="category" :value="category"
-                    @click="filterTemplates(category)">
+            <v-chip-group v-model="selectedCategory" mandatory >
+                <v-chip v-for="category in categories" :key="category" :value="category" class="text-white"
+                    >
                     {{ category }}
                 </v-chip>
-            </v-chip-group> -->
+            </v-chip-group> 
 
             <!-- Contenedor Principal  -->
             <v-row class="mt-2 bg-[#252628] pa-10 rounded-xl " style="height: 593px; width: 1200px; overflow: hidden; ">
@@ -41,15 +39,16 @@
 
                     <v-card v-if="selectedTemplate" class="sticky-card ">
 
-                        <v-card-text class="bg-[#fff]">
+                        <v-card-text >
 
-                            <single-video v-if="selectedTemplate.title === 'Single Video'" />
+                            <reviews v-if="selectedTemplate.title === 'Slider'" :key="'slider-' + selectedTemplate.id"/>
+
+                            <single-video v-else-if="selectedTemplate.title === 'Single Video'" />
                             <grid-video v-else-if="selectedTemplate.title === 'Video Grid'" />
                             <youtube-channel v-else-if="selectedTemplate.title === 'Youtube Channel'" />
+                            
 
-                            <!-- <v-btn color="primary" @click="applyTemplate">
-                    Apply this Template
-                  </v-btn> -->
+                        
                         </v-card-text>
                     </v-card>
 
@@ -72,6 +71,7 @@ import { ref, computed } from "vue";
 import singleVideo from "./singleVideo.vue";
 import gridVideo from "./gridVideo.vue";
 import youtubeChannel from "./youtubeChannel.vue";
+import reviews from "./reviews.vue";
 
 
 
@@ -79,19 +79,19 @@ import youtubeChannel from "./youtubeChannel.vue";
 
 // Datos de las plantillas
 const templates = [
+    // {
+    //     id: 1,
+    //     title: "Youtube Channel",
+    //     detailedDescription: "This template is perfect for ....",
+    //     image: "https://via.placeholder.com/400x200",
+    //     category: "",
+    // },
     {
         id: 1,
-        title: "Youtube Channel",
-        detailedDescription: "This template is perfect for ....",
-        image: "https://via.placeholder.com/400x200",
-        category: "Social Media",
-    },
-    {
-        id: 2,
         title: "Video Grid",
         detailedDescription: "This template is perfect for ....",
         image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://elfsight.com/assets/templates/youtube-gallery/video-grid.jpg?v=1",
-        category: "Social Media",
+        category: "Video",
     },
     {
         id: 3,
@@ -99,51 +99,37 @@ const templates = [
 
         detailedDescription: "This template is perfect for ....",
         image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://elfsight.com/assets/templates/youtube-gallery/single-video.jpg?v=2",
-        category: "Social Media",
+        category: "Video",
     },
+    // {
+    //     id: 4,
+    //     title: "Carousel Widget",
+
+    //     detailedDescription: "This template is perfect for ....",
+    //     image: "https://via.placeholder.com/400x200",
+    //     category: "Reviews",
+    // },
+
     {
         id: 4,
-        title: "YouTube Subscribe",
+        title: "Slider",
 
         detailedDescription: "This template is perfect for ....",
-        image: "https://via.placeholder.com/400x200",
-        category: "Social Media",
+        image: "https://elfsight.com/cdn-cgi/image/dpr=1,width=170,height=170/https://services-universe-prod.sfo3.digitaloceanspaces.com/widget-thumbnails/9b625b84-867e-416a-b990-62c2ab73df92@2x.png",
+        category: "Reviews",
     },
-
-    {
-        id: 5,
-        title: "Video Gallery",
-
-        detailedDescription: "This template is perfect for ....",
-        image: "https://via.placeholder.com/400x200",
-        category: "Social Media",
-    },
-    {
-        id: 6,
-        title: "Playlist",
-
-        detailedDescription: "This template is perfect for ....",
-        image: "https://via.placeholder.com/400x200",
-        category: "Social Media",
-    },
-    {
-        id: 7,
-        title: "Video List",
-
-        detailedDescription: "This template is perfect for ....",
-        image: "https://via.placeholder.com/400x200",
-        category: "Social Media",
-    },
+    
+    
 ];
 
 // Estado para la categoría seleccionada
-const selectedCategory = ref("Social Media");
+const selectedCategory = ref("Video");
 
 // Estado para la plantilla seleccionada
 const selectedTemplate = ref(null);
 
 // Categorías disponibles
-const categories = ["Video", "Reviews"];
+const categories = ["Video","Reviews"];
 
 // Filtrar plantillas por categoría
 const filteredTemplates = computed(() => {
@@ -153,6 +139,7 @@ const filteredTemplates = computed(() => {
 // Método para seleccionar una plantilla
 function selectTemplate(template) {
     selectedTemplate.value = template;
+    console.log("Selected Template:", selectedTemplate.value); 
 }
 
 // Método para aplicar la plantilla seleccionada
