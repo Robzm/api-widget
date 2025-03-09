@@ -8,12 +8,14 @@ import * as directives from 'vuetify/directives'
 import App from './App.vue'
 
 const pinia = createPinia()
-const app = createApp(App)
+
 
 
 const vuetify = createVuetify({
     components,
     directives,
 })
+
+const app = createApp(App)
   
-createApp(App).use(vuetify).use(pinia).mount('#app')
+app.use(vuetify).use(pinia).mount('#app')
