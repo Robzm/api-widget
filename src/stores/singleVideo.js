@@ -2,7 +2,7 @@
 
 // stores/singleVideoStore.js
 import { defineStore } from 'pinia';
-import api from '@/services/api'; // Importa el servicio de API
+import api from '@/services/api'; 
 
 export const useSingleVideoStore = defineStore('singleVideo', {
   state: () => ({
