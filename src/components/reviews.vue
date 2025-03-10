@@ -1,5 +1,5 @@
 <template>
-  <v-container >
+  <v-container>
     <!-- Esqueleto de carga -->
     <div v-if="isLoading" class="h-[400px]">
       <v-skeleton-loader type="card" :elevation="24" class="mb-4"></v-skeleton-loader>
@@ -7,20 +7,23 @@
     </div>
 
     <!-- Carrusel de reseñas -->
-    <v-carousel  v-else cycle height="400" hide-delimiter-background show-arrows >
+    <v-carousel v-else cycle height="400" hide-delimiter-background show-arrows>
       <v-carousel-item v-for="review in reviews" :key="review.id">
         <v-card class="mx-auto my-12" max-width="600" elevation="10">
           <v-card-text class="text-center pa-10">
             <!-- Perfil del autor -->
             <div class="d-flex align-center justify-center mb-4">
               <v-avatar size="50" class="mr-3">
-                <img :src="review.profilePhoto" :alt="review.author" />
+                <a :href="getSourceUrl(review.source, review.placeId)" target="_blank">
+                  <img :src="review.profilePhoto" :alt="review.author" />
+                </a>
               </v-avatar>
               <div>
                 <div class="font-weight-bold">{{ review.author }}</div>
                 <div class="text-caption text-grey">
                   {{ review.date }} ·
-                  <a :href="getSourceUrl(review.source, review.placeId)" target="_blank" class="text-decoration-none hover:text-blue-700">
+                  <a :href="getSourceUrl(review.source, review.placeId)" target="_blank"
+                    class="text-decoration-none hover:text-blue-700">
                     {{ review.source }}
                   </a>
                 </div>
@@ -72,7 +75,7 @@ const { reviews, isLoading, error } = storeToRefs(reviewsStore); // Mantén la r
 
 
 watch(
-  () => reviews.value, 
+  () => reviews.value,
   (newReviews) => {
     console.log('Reviews updated:', newReviews); // Depuración
   }
@@ -81,16 +84,16 @@ watch(
 
 onMounted(() => {
   reviewsStore.fetchReviews('ChIJs5ydyTiuEmsR0fRSlU0C7k0');
-  console.log('Reviews in component:', reviews.value); 
+  console.log('Reviews in component:', reviews.value);
 });
 
 // Lógica para el modal
-const isModalOpen = ref(false); 
-const selectedReview = ref(null); 
+const isModalOpen = ref(false);
+const selectedReview = ref(null);
 
 const openModal = (review) => {
-  selectedReview.value = review; 
-  isModalOpen.value = true; 
+  selectedReview.value = review;
+  isModalOpen.value = true;
 };
 
 const getSourceUrl = (source, placeId) => {
