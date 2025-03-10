@@ -31,7 +31,16 @@
             </div>
 
             <!-- Estrellas -->
-            <v-rating v-model="review.rating" readonly color="yellow-darken-3" dense size="20" class="mb-2"></v-rating>
+            <div class="flex items-center">
+              <template v-for="n in 5" :key="n">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  :class="n <= review.rating ? 'h-5 w-5 text-yellow-500' : 'h-5 w-5 text-gray-300'" fill="currentColor"
+                  viewBox="0 0 20 20" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.688-.921 1.988 0l1.58 4.836a1 1 0 0 0 .95.69h5.067c.97 0 1.371 1.24.588 1.81l-4.1 2.977a1 1 0 0 0-.362 1.118l1.58 4.836c.3.921-.755 1.688-1.588 1.118l-4.1-2.977a1 1 0 0 0-1.176 0l-4.1 2.977c-.833.57-1.888-.197-1.588-1.118l1.58-4.836a1 1 0 0 0-.362-1.118l-4.1-2.977c-.783-.57-.38-1.81.588-1.81h5.067a1 1 0 0 0 .95-.69L9.049 2.927z" />
+                </svg>
+              </template>
+            </div>
 
             <!-- Comentario (limitado a 3 líneas) -->
             <p class="text-body-1 font-italic three-lines">"{{ review.comment }}"</p>
