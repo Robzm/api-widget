@@ -20,7 +20,7 @@
                 <div class="font-weight-bold">{{ review.author }}</div>
                 <div class="text-caption text-grey">
                   {{ review.date }} ·
-                  <a :href="getSourceUrl(review.source, review.placeId)" target="_blank" class="text-decoration-none">
+                  <a :href="getSourceUrl(review.source, review.placeId)" target="_blank" class="text-decoration-none hover:text-blue-700">
                     {{ review.source }}
                   </a>
                 </div>
