@@ -44,14 +44,14 @@ Para consumir las APIs de Google, como **Google Places API** y **YouTube Data AP
 4. Ve a **Credenciales** y crea una **API Key**.
 5. Guarda la **API Key** para usarla en las peticiones.
 
-Recuerda configurar restricciones en las **API Keys** para limitar su uso a dominios o direcciones IP específicas.
 
+## Uso de axios y pinia
 
-## Uso de AXIOS Y PINIA
-**Axios** es una librería de JavaScript para realizar peticiones HTTP. Es ampliamente utilizada para interactuar con APIs y obtener o enviar datos desde y hacia el servidor. 
-### Uso en el Proyecto:
 En este proyecto, Axios se utiliza para hacer peticiones HTTP a las APIs de **Google Places** y **YouTube**, obteniendo reseñas de lugares y datos de videos, respectivamente.
-
-**Pinia** es una librería de gestión de estado para aplicaciones Vue.js. Es una alternativa moderna a Vuex y ofrece una forma sencilla y eficiente de gestionar el estado global de la aplicación.
-### Uso en el Proyecto:
 Pinia se utiliza en este proyecto para manejar el estado de las reseñas obtenidas desde la API de **Google Places** y la información de videos de **YouTube**, asegurando que la información esté disponible en todos los componentes relevantes de la aplicación.
+
+## Funcionalidades Principales
+
+- **Visualización de reseñas de un lugar**: Se puede ver reseñas de un lugar a través de la **Places API**.
+- **Reproducción de videos de YouTube**: Se pueden visualizar videos de un canal de YouTube, así como obtener estadísticas como vistas y likes utilizando la **YouTube Data API**.
+
