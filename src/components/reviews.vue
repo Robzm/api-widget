@@ -92,7 +92,7 @@ watch(
 
 
 onMounted(() => {
-  reviewsStore.fetchReviews('ChIJs5ydyTiuEmsR0fRSlU0C7k0');
+  reviewsStore.fetchReviews('ChIJWR-8hl3OBZERQ9-1nbFCjdk');
   console.log('Reviews in component:', reviews.value);
 });
 
